@@ -32,9 +32,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class AutowiredMapInjectionTests {
 
+	private final Map<String, Object> myMapBean; // Field has to be final.
+
 	@Autowired
-	@Qualifier("myMapBean")
-	private Map<String, Object> myMapBean;
+	public AutowiredMapInjectionTests(@Qualifier("myMapBean") Map<String, Object> myMapBean) {
+		this.myMapBean = myMapBean;
+	}
 
 	/**
 	 * This test passes correctly.
